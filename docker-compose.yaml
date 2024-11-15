@@ -10,21 +10,16 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: "mysql+pymysql://user:password@db:3306/dbname"
+      DATABASE_URL: "mysql+pymysql://root:root@localhost:3306/alembic"
 
   db:
     image: mysql:8
-    container_name: mysql_db
+    container_name: mysql_alembic
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: dbname
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: alembic
     ports:
       - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-
-volumes:
-  db_data:
